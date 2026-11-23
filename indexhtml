@@ -1,0 +1,658 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Birthday to Remember</title>
+
+<style>
+:root {
+  --bg: #f5f0e8;
+  --paper: #fffdf8;
+  --brown: #443a30;
+  --muted: #887d6d;
+  --sage: #87917a;
+  --gold: #b69a6b;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--brown);
+  font-family: Georgia, serif;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+section { padding: 85px 20px; }
+
+h1 {
+  font-size: clamp(38px, 10vw, 66px);
+  font-weight: normal;
+  line-height: 1.15;
+}
+
+h2 {
+  font-size: 31px;
+  font-weight: normal;
+  margin-bottom: 18px;
+}
+
+p {
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--muted);
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font: 11px Arial, sans-serif;
+  color: var(--sage);
+  margin-bottom: 22px;
+}
+
+button {
+  border: 1px solid var(--sage);
+  color: var(--brown);
+  background: transparent;
+  padding: 13px 23px;
+  font-size: 13px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 3px;
+}
+
+button:active { transform: scale(.97); }
+
+.hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 22px;
+  background:
+    radial-gradient(ellipse at 50% 45%,
+    #e9dfce 0%, #f5f0e8 68%);
+}
+
+.hero h1 { max-width: 600px; }
+
+.hero .intro {
+  max-width: 320px;
+  margin-top: 25px;
+}
+
+.hero .date {
+  margin-top: 65px;
+  font-size: 11px;
+  letter-spacing: 3px;
+}
+
+.line {
+  width: 55px;
+  height: 1px;
+  background: var(--gold);
+  margin: 25px auto;
+}
+
+.cake-section { background: #eae5da; }
+
+.cake {
+  font-size: 100px;
+  margin: 25px;
+  animation: breathe 3s infinite ease-in-out;
+}
+
+@keyframes breathe {
+  50% { transform: translateY(-7px); }
+}
+
+.candles {
+  font-size: 23px;
+  letter-spacing: 8px;
+}
+
+.gallery-section { background: var(--paper); }
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  max-width: 600px;
+  margin: 35px auto;
+}
+
+.photo {
+  background: white;
+  padding: 8px 8px 16px;
+  box-shadow: 0 5px 20px #5c493312;
+}
+
+.photo img {
+  display: block;
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.photo span {
+  display: block;
+  padding-top: 12px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.upload {
+  max-width: 350px;
+  margin: 25px auto;
+  padding: 20px;
+  background: var(--bg);
+  border: 1px solid #e5ddcf;
+}
+
+.upload input {
+  margin-top: 15px;
+  max-width: 100%;
+}
+
+.timeline-section { background: #efede4; }
+
+.timeline {
+  max-width: 430px;
+  margin: 40px auto 0;
+  text-align: left;
+  border-left: 1px solid var(--gold);
+  padding-left: 25px;
+}
+
+.memory {
+  position: relative;
+  padding-bottom: 35px;
+}
+
+.memory::before {
+  content: "";
+  position: absolute;
+  left: -30px;
+  top: 5px;
+  width: 9px;
+  height: 9px;
+  background: var(--sage);
+  border-radius: 50%;
+}
+
+.memory h3 {
+  font-size: 19px;
+  font-weight: normal;
+  margin-bottom: 8px;
+}
+
+.letter-section { background: var(--paper); }
+
+.letter {
+  max-width: 450px;
+  margin: 35px auto;
+  padding: 35px 25px;
+  background: #f5f0e7;
+  text-align: left;
+  line-height: 2;
+  font-size: 16px;
+  white-space: pre-line;
+}
+
+#letterText { display: none; }
+
+.gift-section { background: #eae5da; }
+
+.gift {
+  font-size: 95px;
+  cursor: pointer;
+  margin: 30px;
+  display: inline-block;
+  transition: transform .5s;
+}
+
+.gift:hover { transform: scale(1.08); }
+
+#giftText {
+  display: none;
+  max-width: 400px;
+  padding: 28px;
+  margin: 20px auto;
+  background: var(--paper);
+  line-height: 2;
+}
+
+.final {
+  min-height: 65vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #373a32;
+  color: #f5f0e8;
+}
+
+.final h2 { color: #f5f0e8; }
+
+.final p { color: #d2cabb; }
+
+footer {
+  padding: 25px;
+  font-size: 12px;
+  background: var(--bg);
+}
+
+#fireworks {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+@media(max-width:380px) {
+  .photo img { height: 125px; }
+  section { padding: 65px 15px; }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="fireworks"></canvas>
+
+<!-- BIRTHDAY WELCOME -->
+
+<section class="hero" id="top">
+  <p class="eyebrow">A day worth celebrating</p>
+
+  <h1>Happy Birthday,<br>Beautiful Soul.</h1>
+
+  <div class="line"></div>
+
+  <p class="intro">
+    Another year of you, another year of beautiful
+    possibilities. I hope today brings you the
+    same warmth and happiness you bring to others.
+  </p>
+
+  <p class="date">MADE WITH LOVE · JUST FOR YOU</p>
+
+  <button onclick="scrollToSection('cake')">
+    LET'S CELEBRATE ↓
+  </button>
+</section>
+
+
+<!-- BIRTHDAY CAKE -->
+
+<section class="cake-section" id="cake">
+
+  <p class="eyebrow">A little birthday tradition</p>
+
+  <h2>Make a wish.</h2>
+
+  <p>Take a moment. Think of something beautiful.</p>
+
+  <div class="cake">🎂</div>
+
+  <div class="candles" id="candles">🕯️ 🕯️ 🕯️</div>
+
+  <button onclick="blowCandles()">Blow out the candles</button>
+
+  <p id="cakeMessage" style="margin-top:20px"></p>
+
+</section>
+
+
+<!-- PHOTO MEMORIES -->
+
+<section class="gallery-section" id="gallery">
+
+  <p class="eyebrow">Little pieces of forever</p>
+
+  <h2>Memories we keep.</h2>
+
+  <p>Some moments become memories. Some memories become treasures.</p>
+
+  <div class="upload">
+    <p>Add your favourite pictures together.</p>
+    <input type="file" id="photoInput" accept="image/*" multiple>
+  </div>
+
+  <div class="gallery" id="galleryGrid">
+    <div class="photo">
+      <div style="height:160px;display:grid;place-items:center;background:#eae5da;font-size:40px">📷</div>
+      <span>A favourite moment</span>
+    </div>
+    <div class="photo">
+      <div style="height:160px;display:grid;place-items:center;background:#e5e8dd;font-size:40px">🌿</div>
+      <span>A memory to keep</span>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- FRIENDSHIP TIMELINE -->
+
+<section class="timeline-section" id="timeline">
+
+  <p class="eyebrow">Our little story</p>
+
+  <h2>Through the years.</h2>
+
+  <div class="timeline">
+
+    <div class="memory">
+      <h3>The beginning</h3>
+      <p>Somehow, an ordinary day turned into the beginning of a beautiful friendship.</p>
+    </div>
+
+    <div class="memory">
+      <h3>The laughter</h3>
+      <p>The silly conversations, random jokes and moments we will never forget.</p>
+    </div>
+
+    <div class="memory">
+      <h3>The memories</h3>
+      <p>All those little things that made our friendship what it is today.</p>
+    </div>
+
+    <div class="memory">
+      <h3>And everything ahead</h3>
+      <p>So many more memories waiting to happen.</p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- PERSONAL LETTER -->
+
+<section class="letter-section" id="letter">
+
+  <p class="eyebrow">A few words from the heart</p>
+
+  <h2>A letter for you.</h2>
+
+  <div class="letter">
+
+    <p style="color:#443a30">
+      Dear Best Friend,
+    </p>
+
+    <p id="letterText">
+      I don't always say it, but I'm genuinely grateful to have you in my life.
+
+      Thank you for being part of so many moments, for the laughter, the conversations and all the memories we have created.
+
+      I hope this new chapter of your life brings you peace, confidence, success and reasons to smile every single day.
+
+      May you achieve the things you've been quietly wishing for. May you always find happiness in the little things, and may life be gentle with you.
+
+      Never forget how special you are.
+
+      Happy Birthday. I hope this year is beautiful to you.
+
+      With lots of love,
+      Your best friend. 🤍
+    </p>
+
+    <div style="text-align:center">
+      <button id="readButton" onclick="readLetter()">
+        READ YOUR LETTER
+      </button>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- SECRET GIFT -->
+
+<section class="gift-section" id="gift">
+
+  <p class="eyebrow">Something extra</p>
+
+  <h2>One last little surprise.</h2>
+
+  <p>There's something waiting for you.</p>
+
+  <div class="gift" onclick="openGift()">🎁</div>
+
+  <p>Tap to unwrap.</p>
+
+  <div id="giftText">
+    <h2>One wish for you.</h2>
+
+    <p>
+      May you never lose the little things that
+      make you who you are. Keep growing, keep
+      dreaming and keep being yourself.
+
+      The world is better with you in it.
+    </p>
+
+    <p style="margin-top:20px">Always cheering for you. 🤍</p>
+  </div>
+
+</section>
+
+
+<!-- FINAL CELEBRATION -->
+
+<section class="final" id="final">
+
+  <p class="eyebrow" style="color:#c2b397">One more time</p>
+
+  <h2>Happy Birthday.</h2>
+
+  <div class="line"></div>
+
+  <p>
+    May your days be peaceful,<br>
+    your heart be happy,<br>
+    and your dreams find their way to you.
+  </p>
+
+  <button onclick="celebrate()" style="border-color:#c2b397;color:#fff">
+    A LITTLE CELEBRATION ✨
+  </button>
+
+  <p id="finalMessage" style="margin-top:20px"></p>
+
+</section>
+
+<footer>
+  Made with love, for someone special. 🤍
+</footer>
+
+
+<script>
+
+function scrollToSection(id) {
+  document.getElementById(id).scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+
+// CANDLE ANIMATION
+
+function blowCandles() {
+  document.getElementById("candles").textContent = "💨 💨 💨";
+
+  document.getElementById("cakeMessage").textContent =
+    "May every little wish come true. 🤍";
+}
+
+
+// PHOTO UPLOAD
+
+document.getElementById("photoInput")
+.addEventListener("change", function(event) {
+
+  const grid = document.getElementById("galleryGrid");
+
+  Array.from(event.target.files).forEach(file => {
+
+    if (!file.type.startsWith("image/")) return;
+
+    const image = document.createElement("img");
+    image.src = URL.createObjectURL(file);
+    image.alt = "A special memory";
+
+    const card = document.createElement("div");
+    card.className = "photo";
+
+    const caption = document.createElement("span");
+    caption.textContent = "A moment worth keeping.";
+
+    card.appendChild(image);
+    card.appendChild(caption);
+
+    grid.appendChild(card);
+  });
+});
+
+
+// LETTER REVEAL
+
+function readLetter() {
+  document.getElementById("letterText").style.display = "block";
+
+  document.getElementById("readButton").style.display = "none";
+}
+
+
+// GIFT REVEAL
+
+function openGift() {
+  document.getElementById("giftText").style.display = "block";
+  document.querySelector(".gift").textContent = "🎀";
+}
+
+
+// FIREWORKS
+
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
+
+let particles = [];
+let animationFrame;
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+resize();
+window.addEventListener("resize", resize);
+
+function burst(x, y) {
+
+  for (let i = 0; i < 55; i++) {
+
+    const angle = Math.random() * Math.PI * 2;
+    const speed = Math.random() * 3.5 + 1;
+
+    particles.push({
+      x: x,
+      y: y,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      life: 65,
+      color: ["#e8d2a9","#d4bba0","#e8e1d2","#aeb8a0"][
+        Math.floor(Math.random() * 4)
+      ]
+    });
+  }
+}
+
+function animate() {
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  particles.forEach((p, i) => {
+
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += 0.025;
+    p.life--;
+
+    ctx.globalAlpha = Math.max(0, p.life / 65);
+    ctx.fillStyle = p.color;
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+    ctx.fill();
+
+    if (p.life <= 0) particles.splice(i, 1);
+
+  });
+
+  ctx.globalAlpha = 1;
+
+  if (particles.length > 0) {
+    animationFrame = requestAnimationFrame(animate);
+  } else {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    animationFrame = null;
+  }
+}
+
+function celebrate() {
+
+  canvas.style.display = "block";
+
+  if (animationFrame) {
+    cancelAnimationFrame(animationFrame);
+    animationFrame = null;
+  }
+
+  particles = [];
+
+  for (let i = 0; i < 5; i++) {
+
+    setTimeout(() => {
+
+      burst(
+        Math.random() * canvas.width,
+        Math.random() * canvas.height * .65
+      );
+
+      if (!animationFrame) animate();
+
+    }, i * 450);
+  }
+
+  document.getElementById("finalMessage").textContent =
+    "Here's to another beautiful year. 🤍";
+
+  setTimeout(() => {
+    canvas.style.display = "none";
+    particles = [];
+  }, 4000);
+}
+
+</script>
+
+</body>
+</html>
